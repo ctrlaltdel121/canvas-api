@@ -1,3 +1,4 @@
-runtime: python27
+runtime: python
 env: flex
 entrypoint: python ./run.py
+threadsafe: true

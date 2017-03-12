@@ -7,7 +7,7 @@
                     e.preventDefault();
                     e.stopPropagation();
                     console.log("testing")
-                    fetch('http://localhost:5000/user_input', {
+                    fetch('/user_input', {
                         method: 'post',
                         body: new FormData(document.getElementById('input-form'))
                     }).then(function(response) {
