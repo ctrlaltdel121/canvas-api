@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory, jsonify
+import subprocess
 
 app = Flask(__name__)
 
@@ -10,7 +11,7 @@ def index():
 def processInput():
     name = request.form.get('name')
     ret = {}
-    ret['message'] = "Hello %s" %name
+    ret['message'] = subprocess.check_output(["./runner", name])
     return jsonify(ret)
 
 app.run(threaded=True)
