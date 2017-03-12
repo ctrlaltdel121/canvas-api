@@ -1,5 +1,6 @@
 from flask import Flask, request, send_from_directory, jsonify
 import subprocess
+import os
 
 app = Flask(__name__)
 
@@ -14,4 +15,4 @@ def processInput():
     ret['message'] = subprocess.check_output(["./runner", name])
     return jsonify(ret)
 
-app.run(threaded=True)
+app.run(host="0.0.0.0", port=os.environ['PORT'], threaded=True)
