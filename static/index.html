@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $("#input-form").submit(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log("testing")
+                    fetch('http://localhost:5000/user_input', {
+                        method: 'post',
+                        body: new FormData(document.getElementById('input-form'))
+                    }).then(function(response) {
+                        return response.json()
+                    }).then(function(j){
+                        document.getElementById('myCanvas').getContext("2d").fillText(j.message, 10, 50)
+                    });
+                    return false;
+                });
+            });
+        </script>
+    </head>
+    <body>
+    <canvas id="myCanvas"></canvas>
+    <form id="input-form">
+        What is your name?:<br>
+        <input type="text" name="name" placeholder="Enter your name">
+    </form>
+    </body>
+</html>
