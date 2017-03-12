@@ -13,7 +13,17 @@
                     }).then(function(response) {
                         return response.json()
                     }).then(function(j){
-                        document.getElementById('myCanvas').getContext("2d").fillText(j.message, 10, 50)
+                        canvas = document.getElementById('myCanvas')
+                        ctx = canvas.getContext("2d")
+                        // set canvas height and width
+                        canvas.width=800
+                        canvas.height=400
+                        canvas.style.width=800
+                        canvas.style.height=400
+                        // clear the canvas for a redrawing
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.font = '50px serif';
+                        ctx.strokeText(j.message, 200, 100)
                     });
                     return false;
                 });
@@ -21,10 +31,11 @@
         </script>
     </head>
     <body>
-    <canvas id="myCanvas"></canvas>
+    <canvas id="myCanvas" style="width: 800px; height:400px"></canvas>
     <form id="input-form">
         What is your name?:<br>
         <input type="text" name="name" placeholder="Enter your name">
+        <input type="submit" value="Display">
     </form>
     </body>
 </html>
